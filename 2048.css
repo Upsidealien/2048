@@ -1,0 +1,10 @@
+div div {
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+
+#grid {
+    width:400px;
+    height:400px;
+}
