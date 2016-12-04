@@ -27,6 +27,37 @@ var drawGrid = function() {
 
 drawGrid();
 
+var moveright = function() {
+    for (var i=0; i < size; i++) {
+        var row = [];
+        for (var j=0; j<size; j++) {
+          if (values[i][j] != 0) {
+            row.push(values[i][j]);
+          }
+        }
+
+        while(row.length < size) {
+          row.unshift(0);
+        }
+
+        for (var j=size-1; j >= 0; j--) {
+          if (row[j] == 0){
+            j = -1;
+          } else if (row[j] == row[j-1]) {
+            row[j] += row[j-1];
+            row.splice(j-1, 1);
+            row.unshift(0);
+          }
+        }
+
+        for (var j=0; j<size; j++) {
+          values[i][j] = row[j];
+        }
+    }
+
+    drawGrid();
+}
+
 var moveleft = function() {
 
       for (var i=0; i < size; i++) {
