@@ -16,6 +16,30 @@ var values = [
     [1, 1, 0, 0]
 ];
 
+var addNewTile = function() {
+  if (!gameLost) {
+    var row = Math.floor(Math.random() * size);
+    var col = Math.floor(Math.random() * size);
+    var value = (Math.floor(Math.random() * 2) + 1)*2;
+
+    values[row][col] = value;
+
+    drawGrid();
+  }
+}
+
+var gameLost = function() {
+  var gameLost = true;
+  for(var i=0; i<size; i++) {
+    for(var j=0; j< size; j++) {
+      if (values[i][j] == 0) {
+        gameLost = false;
+      }
+    }
+  }
+  return gameLost;
+}
+
 var drawGrid = function() {
   for (var i=0; i < size; i++) {
     for (var j=0; j < size; j++) {
