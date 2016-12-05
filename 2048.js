@@ -10,21 +10,25 @@
 var size = 4;
 
 var values = [
-    [1, 1, 1, 1],
-    [0, 1, 0, 0],
-    [0, 1, 0, 0],
-    [1, 1, 0, 0]
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0],
+    [0, 0, 0, 0]
 ];
 
-var addNewTile = function() {
-  if (!gameLost) {
-    var row = Math.floor(Math.random() * size);
-    var col = Math.floor(Math.random() * size);
-    var value = (Math.floor(Math.random() * 2) + 1)*2;
-
-    values[row][col] = value;
-
-    drawGrid();
+var addNewTile = function(values) {
+  if (!gameLost()) {
+    var newTileAdded = false;
+    while (!newTileAdded) {
+      var row = Math.floor(Math.random() * size);
+      var col = Math.floor(Math.random() * size);
+      var value = (Math.floor(Math.random() * 2) + 1)*2;
+      if (values[row][col] == 0) {
+        values[row][col] = value;
+        newTileAdded = true;
+      }
+    }
+    drawGrid(values);
   }
 }
 
@@ -40,16 +44,30 @@ var gameLost = function() {
   return gameLost;
 }
 
-var drawGrid = function() {
+var drawGrid = function(values) {
   for (var i=0; i < size; i++) {
     for (var j=0; j < size; j++) {
       var string = i + '_' + j;
-      document.getElementById(string).innerHTML = values[i][j];
+      if (values[i][j] != 0) {
+        document.getElementById(string).innerHTML = values[i][j];
+      } else {
+        document.getElementById(string).innerHTML = " ";
+      }
     }
   }
 }
 
-drawGrid();
+addNewTile(values);
+
+document.addEventListener("keydown", keyDown, false);
+
+function keyDown(key) {
+  var keyCode = key.keyCode;
+  if (keyCode == 38) moveup();
+  else if (keyCode == 39) moveright();
+  else if (keyCode == 40) movedown();
+  else if (keyCode == 37) moveleft();
+}
 
 var moveright = function() {
     for (var i=0; i < size; i++) {
@@ -79,7 +97,7 @@ var moveright = function() {
         }
     }
 
-    drawGrid();
+    addNewTile(values);
 }
 
 var moveleft = function() {
@@ -109,7 +127,7 @@ var moveleft = function() {
           values[i] = row;
       }
 
-      drawGrid();
+      addNewTile(values);
 }
 
 
@@ -141,7 +159,7 @@ var movedown = function() {
           }
       }
 
-      drawGrid();
+      addNewTile(values);
 }
 
 
@@ -174,5 +192,5 @@ var moveup = function() {
           }
       }
 
-      drawGrid();
+      addNewTile(values);
 }
