@@ -73,7 +73,7 @@ var drawGrid = function(values) {
                 color = "#696969";
                 break;
             case 64:
-                backgroundColor = "#ff4d4d";
+                backgroundColor = "#ff6666";
                 color = "#696969";
                 break;
             default:
