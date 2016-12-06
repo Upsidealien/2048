@@ -2,10 +2,26 @@ div div {
     width: 100px;
     height: 100px;
     float: left;
-    font-size: 80px;
+    background-color: #696969;
 }
 
 #grid {
     width:400px;
     height:400px;
+    background-color: #696969;
+}
+
+.tile {
+    font-size: 50px;
+    width:80px;
+    height:80px;
+    text-align: center;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 80px;
+    margin-top: 10px;
+    margin-left: 10px;
+    color: #696969;
+    background-color: #D3D3D3;
+    border-radius: 10px;
 }

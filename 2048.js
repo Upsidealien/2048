@@ -49,7 +49,39 @@ var drawGrid = function(values) {
     for (var j=0; j < size; j++) {
       var string = i + '_' + j;
       if (values[i][j] != 0) {
-        document.getElementById(string).innerHTML = values[i][j];
+        var backgroundColor = "#D3D3D3";
+        var color = "#696969";
+        switch(values[i][j]) {
+            case 2:
+              backgroundColor = "#D3D3D3";
+              color = "#696969";
+              break;
+            case 4:
+                backgroundColor = "#9fdfbf";
+                color = "#696969";
+                break;
+            case 8:
+                backgroundColor = "#ffbf80";
+                color = "#696969";
+                break;
+            case 16:
+                backgroundColor = "#ff944d";
+                color = "#696969";
+                break;
+            case 32:
+                backgroundColor = "#ff6666";
+                color = "#696969";
+                break;
+            case 64:
+                backgroundColor = "#ff4d4d";
+                color = "#696969";
+                break;
+            default:
+              backgroundColor = "#ffe066";
+              color = "#696969";
+              break;
+        }
+        document.getElementById(string).innerHTML = "<div class='tile' style='background-color:" + backgroundColor + "; color:" + color +";'" + ">" + values[i][j] + "</div>";
       } else {
         document.getElementById(string).innerHTML = " ";
       }
